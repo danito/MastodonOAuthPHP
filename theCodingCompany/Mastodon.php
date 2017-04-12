@@ -46,12 +46,15 @@ class Mastodon
      * @param type $name
      * @param type $website_url
      */
-    public function createApp($name, $website_url){
+    public function createApp($name, $website_url, $redirect_uris = false){
         if(!empty($name) && !empty($website_url)){
             
             //Set our info
             $this->app_config["client_name"] = $name;
             $this->app_config["website"]     = $website_url;
+            if (!empty($redirect_uris)){
+                $this->app_config["redirect_uris"] = $redirect_uris;
+            }
             
             return $this->getAppConfig();
         }
